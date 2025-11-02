@@ -1,20 +1,13 @@
 services:
   web:
-    image: "${DOCKER_IMAGE}"
+    image: ${DOCKER_IMAGE}
     ports:
       - "8081:80"
-    depends_on:
-      - db
-    restart: unless-stopped
+    restart: always
 
-  db:
+  mysql:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: mydatabase
-    volumes:
-      - db_data:/var/lib/mysql
-    restart: unless-stopped
-
-volumes:
-  db_data:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: devops
+    restart: always
